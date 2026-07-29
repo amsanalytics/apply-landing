@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Ohio Family Weekend Shortlist · July 31–August 2, 2026</title>
+  <style>
+    :root {
+      --ink: #17313b;
+      --muted: #5b6f76;
+      --paper: #f7f5ee;
+      --card: #fffdf8;
+      --lake: #126b75;
+      --lake-dark: #0d4c55;
+      --sun: #e9a23b;
+      --green: #3d7658;
+      --red: #a2493d;
+      --line: #d9ded9;
+      --shadow: 0 14px 34px rgba(18, 50, 59, .10);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(233,162,59,.14), transparent 30rem),
+        linear-gradient(180deg, #eef7f5 0, var(--paper) 28rem);
+      font: 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--lake-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--red); }
+    .shell { width: min(1480px, calc(100% - 32px)); margin: 0 auto; }
+    header {
+      padding: 52px 0 28px;
+      display: grid;
+      grid-template-columns: 1.5fr .8fr;
+      gap: 28px;
+      align-items: end;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--lake);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+    .dek { max-width: 820px; margin: 20px 0 0; font-size: 18px; color: var(--muted); }
+    .trip-card, .card {
+      background: rgba(255,253,248,.92);
+      border: 1px solid rgba(23,49,59,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .trip-card { padding: 22px; }
+    .trip-card dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin: 0; }
+    dt { color: var(--muted); }
+    dd { margin: 0; font-weight: 750; }
+    .verdict {
+      margin: 18px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-weight: 750;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247,245,238,.94);
+      border-block: 1px solid rgba(23,49,59,.10);
+      backdrop-filter: blur(12px);
+    }
+    nav .shell { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; }
+    nav a {
+      flex: none;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    nav a:hover { background: #dfeceb; color: var(--lake-dark); }
+    main { padding: 28px 0 70px; }
+    section { scroll-margin-top: 72px; margin-top: 50px; }
+    h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+    h3 { margin: 0 0 10px; font-size: 21px; line-height: 1.25; }
+    h4 { margin: 20px 0 6px; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+    .subhead { color: var(--muted); max-width: 900px; margin: 0 0 20px; }
+    .callout {
+      border-left: 5px solid var(--sun);
+      padding: 15px 18px;
+      background: #fff8e9;
+      border-radius: 0 14px 14px 0;
+      margin: 20px 0;
+    }
+    .callout strong { color: #70450a; }
+    .callout.red { border-color: var(--red); background: #fff0ed; }
+    .callout.green { border-color: var(--green); background: #eef8f1; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #e7efed;
+      color: var(--lake-dark);
+    }
+    .chip.good { background: #dcefe2; color: #285c3f; }
+    .chip.warn { background: #fae9c8; color: #7b4a06; }
+    .chip.bad { background: #f5dcd7; color: #7b3128; }
+    .chip.neutral { background: #ebe9e2; color: #555e5b; }
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 20px 0 12px;
+    }
+    button, input {
+      font: inherit;
+    }
+    button {
+      cursor: pointer;
+      border: 1px solid #b9c8c5;
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink);
+      padding: 8px 13px;
+      font-weight: 750;
+    }
+    button.active, button:hover { background: var(--lake); color: white; border-color: var(--lake); }
+    .table-wrap {
+      overflow: auto;
+      max-height: 72vh;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      min-width: 2700px;
+      font-size: 13px;
+      line-height: 1.42;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid #e9ece8;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      background: var(--lake-dark);
+      color: white;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+      min-width: 140px;
+    }
+    th:first-child, td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      min-width: 250px;
+      max-width: 250px;
+      background: #fffdf8;
+    }
+    th:first-child { z-index: 6; background: var(--lake-dark); }
+    tbody tr:nth-child(even) td { background: #faf9f4; }
+    tbody tr:nth-child(even) td:first-child { background: #faf9f4; }
+    tbody tr:hover td { background: #f1f8f6; }
+    tbody tr:hover td:first-child { background: #f1f8f6; }
+    tr[data-hidden="true"] { display: none; }
+    .rank {
+      float: left;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin: 0 10px 14px 0;
+      border-radius: 10px;
+      background: var(--sun);
+      color: #4e2d00;
+      font-weight: 900;
+      font-size: 18px;
+    }
+    .property-name { font-size: 15px; font-weight: 850; }
+    .mini { display: block; color: var(--muted); font-size: 11px; margin-top: 5px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { padding: 22px; }
+    .card .number {
+      font-family: Georgia, serif;
+      color: var(--sun);
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1;
+    }
+    .facts { display: grid; grid-template-columns: 135px 1fr; gap: 7px 13px; margin: 18px 0; }
+    .facts dt { font-size: 13px; }
+    .facts dd { font-size: 14px; font-weight: 650; }
+    ul, ol { padding-left: 21px; }
+    li + li { margin-top: 6px; }
+    .activity-table { min-width: 1180px; }
+    .activity-table th { position: static; }
+    .activity-table th:first-child, .activity-table td:first-child { position: static; min-width: 165px; max-width: none; }
+    .recommendation {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero-choice {
+      padding: 28px;
+      color: white;
+      background: linear-gradient(135deg, var(--lake-dark), var(--lake));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-choice a { color: white; }
+    .hero-choice h3 { font-family: Georgia, serif; font-size: 32px; }
+    .backup-stack { display: grid; gap: 14px; }
+    .backup { padding: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+    .checklist { columns: 2; column-gap: 36px; }
+    .checklist li { break-inside: avoid; margin-bottom: 9px; }
+    .source-list { font-size: 13px; color: var(--muted); }
+    footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .print-note { display: none; }
+    @media (max-width: 900px) {
+      header, .recommendation { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .checklist { columns: 1; }
+      .shell { width: min(100% - 20px, 1480px); }
+    }
+    @media print {
+      body { background: white; font-size: 11px; }
+      nav, .tools { display: none; }
+      .shell { width: 100%; }
+      header { padding-top: 0; }
+      .trip-card, .card, .table-wrap { box-shadow: none; }
+      .table-wrap { overflow: visible; max-height: none; }
+      table { min-width: 0; font-size: 7px; }
+      th, td { padding: 5px; }
+      th:first-child, td:first-child { position: static; min-width: 0; max-width: none; }
+      .grid-3 { grid-template-columns: 1fr; }
+      section { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      .print-note { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <div>
+      <p class="eyebrow">Last-minute, evidence-first rental research</p>
+      <h1>Two Ohio nights built around the backyard</h1>
+      <p class="dek">A ranked family shortlist for Friday, July 31 through Sunday, August 2, 2026—screened for real beds, exact-date pricing, a usable on-property lawn, Saturday recreation without driving, and an honest treatment of what the listings do not prove.</p>
+    </div>
+    <aside class="trip-card" aria-label="Trip parameters">
+      <dl>
+        <dt>Travelers</dt><dd>2 adults · children 10 &amp; 8</dd>
+        <dt>Stay</dt><dd>Fri Jul 31 → Sun Aug 2</dd>
+        <dt>Budget</dt><dd>≈ $1,200 all-in</dd>
+        <dt>Origin</dt><dd>ZIP 44118</dd>
+        <dt>Final live check</dt><dd>Jul 29, 2026 · 5:46 p.m. ET</dd>
+      </dl>
+      <p class="verdict">Best fit: <a href="https://www.airbnb.com/rooms/937526363227729452?check_in=2026-07-31&amp;check_out=2026-08-02&amp;adults=2&amp;children=2">Lake Rd 4BR</a> — four conventional bedrooms, one king plus two child-sized twin rooms, a recent “big yard” review, and an $854 displayed trip total.</p>
+    </aside>
+  </header>
+
+  <nav aria-label="Report sections">
+    <div class="shell">
+      <a href="#comparison">Ranked table</a>
+      <a href="#leaders">Top three</a>
+      <a href="#activities">Friday &amp; Sunday</a>
+      <a href="#saturday">Saturday</a>
+      <a href="#recommendation">Recommendation</a>
+      <a href="#checklist">Before booking</a>
+      <a href="#limitations">Limitations</a>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <div class="callout">
+      <strong>The central finding:</strong> no exact-date lawn-first option with solid sleeping evidence also had a verified hot tub or pool. The swimming condo at rank 4 has a shared year-round indoor pool and private complex beach, but no usable lawn. Two attractive hot-tub/pool listings were checked and found unavailable, so they are not recommended.
+    </div>
+
+    <section id="comparison">
+      <p class="eyebrow">01 · Decision table</p>
+      <h2>Ranked comparison</h2>
+      <p class="subhead">Prices are the booking platform’s displayed two-night total for the exact dates and four guests. “All-in” means the platform explicitly displayed all mandatory fees/taxes in one price; optional add-ons, damage claims, and refundable deposits are outside that number. Routes use Google Maps to the disclosed city because the platforms withhold street addresses.</p>
+
+      <div class="tools" aria-label="Table controls">
+        <button type="button" id="showAll" class="active">All 6</button>
+        <button type="button" id="lawnFirst">Lawn evidence ≥ medium</button>
+        <button type="button" id="waterOnly">Verified swimming</button>
+        <button type="button" onclick="window.print()">Print / save PDF</button>
+        <span class="mini">The first property column stays fixed while you scroll.</span>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Scrollable property comparison" tabindex="0">
+        <table id="propertyTable">
+          <thead>
+            <tr>
+              <th>Rank · property · direct link</th>
+              <th>Ohio location</th>
+              <th>Drive from 44118</th>
+              <th>Exact-date availability · check time</th>
+              <th>Most complete price</th>
+              <th>Bedrooms · exact conventional beds</th>
+              <th>Field / lawn evidence</th>
+              <th>Pool · hot tub · swimming</th>
+              <th>Ping-pong / pool table</th>
+              <th>Porch / outdoor sitting</th>
+              <th>Dining for 4</th>
+              <th>Saturday non-powered recreation</th>
+              <th>Boundary / carrying issue</th>
+              <th>Rules · cancellation</th>
+              <th>Missing preferences</th>
+              <th>Confidence</th>
+              <th>Why it ranks here</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-lawn="3" data-water="0">
+              <td><span class="rank">1</span><span class="property-name"><a href="https://www.airbnb.com/rooms/937526363227729452?check_in=2026-07-31&amp;check_out=2026-08-02&amp;adults=2&amp;children=2">Lake Rd 4BR — Near Harbor &amp; Geneva</a></span><span class="mini">Individual Airbnb listing · link re-opened successfully</span></td>
+              <td>Ashtabula, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Ashtabula%2C%20OH&amp;travelmode=driving">1 hr 4 min · 54.6 mi</a> via I‑90 E to Ashtabula city. Doorstep time may vary.</td>
+              <td><span class="chip good">Available</span> Jul 31–Aug 2 selected; 4 guests; Reserve enabled. Rechecked Jul 29 at 5:46 p.m. ET.</td>
+              <td><strong>$854 all-in</strong> for 2 nights. Airbnb’s one-price display was active and showed the trip total.</td>
+              <td><strong>4 BR:</strong> 1 king; 1 queen; 1 twin; 1 twin. Adults get king; each child can have a separate twin and room. Pullout/cot exist but are unnecessary.</td>
+              <td><span class="chip good">Medium-high</span> A July 2026 guest explicitly wrote that the “yard was big.” Listing also verifies firepit and alfresco area. <strong>Inference:</strong> likely useful for catch; openness, grade, and soccer suitability are not proven by dimensions.</td>
+              <td>No on-site pool/hot tub. Listing advertises <strong>shared beach access</strong> and says Lake Erie is at the end of the road; exact walking route and swimming conditions are not given.</td>
+              <td>None verified.</td>
+              <td>Alfresco dining, BBQ and outdoor seating verified. Indoor table size is not described; a 10-guest home strongly suggests capacity, but serving-room comfort is unverified.</td>
+              <td>Big-yard catch/soccer <em>inference</em>; outdoor sitting; listing-supplied games. Best Saturday base if the yard is confirmed flat/open.</td>
+              <td>Shared beach would leave the house parcel. Walking distance is undisclosed. Towels/chairs would ordinarily be carried from the house; no destination supplies or access credential are verified. Do not rely on it for Saturday.</td>
+              <td>Check-in after 3 p.m.; checkout before 10 a.m.; max 10; pets allowed. <strong>Non-refundable</strong> at this late date. Review notes A/C struggled during peak heat, though management responded.</td>
+              <td>No verified water amenity on the property; no ping-pong/pool table; lawn grade/open area still needs confirmation.</td>
+              <td><span class="chip good">High overall</span> Bed/price/date evidence high; lawn medium-high.</td>
+              <td>Best combination of separate real beds, current reviews, plausible large lawn, comfortable price, and straightforward Saturday plan.</td>
+            </tr>
+
+            <tr data-lawn="3" data-water="0">
+              <td><span class="rank">2</span><span class="property-name"><a href="https://www.vrbo.com/3545387ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">Wine Hop-Inn: Ohio wine country stay</a></span><span class="mini">Individual Vrbo listing · request-to-book</span></td>
+              <td>Geneva, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Geneva%2C%20OH&amp;travelmode=driving">54 min · 43.5 mi</a> via I‑90 E to Geneva city.</td>
+              <td><span class="chip good">Dates available</span> Vrbo explicitly says “Your dates are available.” Rechecked Jul 29 at 5:46 p.m. ET. <strong>Host acceptance still required.</strong></td>
+              <td><strong>$1,176 all-in</strong> for 2 nights; all fees included. $24 below target.</td>
+              <td><strong>3 BR:</strong> bedroom 2 queen; bedroom 3 queen; primary has king + queen. Adults get king; children each get a conventional queen. Sofa bed not needed.</td>
+              <td><span class="chip good">Medium-high</span> Listing explicitly calls it an “amazing backyard” and supplies horseshoes, firepit and seating. <strong>Inference:</strong> horseshoes require some usable open ground; exact size/grade not stated.</td>
+              <td>None verified. No pool, hot tub or beach access claimed.</td>
+              <td>None verified.</td>
+              <td>Back porch, outdoor seating and firepit verified.</td>
+              <td>Dining room overlooks grapevines; kitchen has breakfast bar with 4 stools. Good for four, though serving-dish clearance is not measured.</td>
+              <td><strong>Best explicitly supported Saturday mix:</strong> backyard horseshoes, catch, porch sitting and on-site games. Firepit is not counted as a Saturday activity.</td>
+              <td>No off-property amenity is needed for the recommended Saturday plan.</td>
+              <td>Check-in after 4 p.m.; checkout before 11 a.m.; max 8; no events, pets or smoking. <strong>No refund</strong> this close to check-in. Window A/C rather than central air; June/July 2026 guests found it adequate.</td>
+              <td>No water amenity; no ping-pong/pool table; lawn size/flatness not quantified.</td>
+              <td><span class="chip good">High overall</span> Excellent listing/review support; lawn inference medium-high.</td>
+              <td>Most credible backyard recreation and excellent sleep plan, but nearly uses the whole budget and is only request-to-book.</td>
+            </tr>
+
+            <tr data-lawn="2" data-water="0">
+              <td><span class="rank">3</span><span class="property-name"><a href="https://www.vrbo.com/20277021ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">GOTL &amp; SPIRE: Wine Country Escape</a></span><span class="mini">Individual Vrbo listing · new/no Vrbo reviews</span></td>
+              <td>Ashtabula, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Ashtabula%2C%20OH&amp;travelmode=driving">1 hr 4 min · 54.6 mi</a> via I‑90 E to Ashtabula city.</td>
+              <td><span class="chip good">Dates available</span> Vrbo explicitly says “Your dates are available.” Rechecked Jul 29 at 5:46 p.m. ET.</td>
+              <td><strong>$721 all-in</strong> for 2 nights; all fees included. Same home appeared on Airbnb at $694 during the search, but this report uses the fully rechecked Vrbo total.</td>
+              <td><strong>3 BR:</strong> 1 queen in each room. Adults and children can each use separate conventional beds/rooms. One bathroom.</td>
+              <td><span class="chip warn">Medium</span> Private yard, firepit, picnic setup and maintained lawn are visible/described. <strong>Photo-based inference:</strong> likely usable for catch; a wide, flat soccer area is not established.</td>
+              <td>None verified.</td>
+              <td>None verified.</td>
+              <td>Patio/picnic table, grill, firepit seating and screened garage verified.</td>
+              <td>Photo shows a table seating 6; a second table is in the garage. Strong.</td>
+              <td>Private-yard catch, board games, porch/picnic sitting and manual outdoor games; screened garage is useful in rain.</td>
+              <td>Western Reserve Greenway trailhead is 0.3 mi away and <strong>leaves the property</strong>. Bikes, water and other gear would have to cross with the family; no supplies are provided at the trailhead. Do not count it for Saturday.</td>
+              <td>Check-in 3 p.m.; checkout 10 a.m.; no events, pets or smoking; no refund. Washer/dryer unavailable for this 2-night stay. Listing text says renter 25+, while Vrbo’s rule panel shows 18+: <strong>source conflict—verify.</strong></td>
+              <td>No water; no table games; only one bath; no Vrbo guest reviews; field size not verified.</td>
+              <td><span class="chip warn">Medium</span> Price/beds/date high; yard and new-listing quality less certain.</td>
+              <td>Outstanding value and three proper bedrooms; ranks behind the leaders because lawn proof and stay-history evidence are thinner.</td>
+            </tr>
+
+            <tr data-lawn="0" data-water="1">
+              <td><span class="rank">4</span><span class="property-name"><a href="https://www.vrbo.com/2700785?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">Beach-level condo L08</a></span><span class="mini">Exceptional no-lawn alternative</span></td>
+              <td>Geneva-on-the-Lake, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Geneva-on-the-Lake%2C%20OH&amp;travelmode=driving">1 hr 3 min · 48.0 mi</a> via I‑90 E.</td>
+              <td><span class="chip good">Available</span> Exact dates and 4 guests were accepted; checked Jul 29.</td>
+              <td><strong>$874 all-in</strong> for 2 nights; all fees included.</td>
+              <td><strong>2 BR:</strong> 1 king in each. Adults get one; children would share the second king—conventional and comfortable, but not separate surfaces.</td>
+              <td><span class="chip bad">Fails near-mandatory</span> No usable field/lawn verified. Included only because the swimming setup is unusually strong.</td>
+              <td><strong>Shared</strong> heated indoor condominium pool, listed open year-round 8 a.m.–8 p.m.; private complex beach; ground-level patio with beach access. Listing photo says “private heated pool,” but rules/description clarify it is shared by the complex. No lifeguard; Lake Erie undertow warning.</td>
+              <td>None verified.</td>
+              <td>Private beach-level patio.</td>
+              <td>Open kitchen/dining and breakfast bar; dinnerware for 6. Suitable for four.</td>
+              <td>Shared indoor swimming 8–8, complex beach, patio sitting and in-unit games. Adult supervision required; no lifeguard.</td>
+              <td>Pool/beach are within the condominium property, so the route does not appear to leave the complex. Beach chairs are reportedly stored at the beach. Towels at the destination are not verified; unit bath towels are supplied.</td>
+              <td>Check-in 3 p.m.; checkout 10 a.m.; quiet 10 p.m.–8 a.m.; no pets; no refund. Pool rules prohibit diving, running, horseplay and glass.</td>
+              <td><strong>No lawn;</strong> children share a bed; no private water amenity; no table games.</td>
+              <td><span class="chip good">High on amenities</span> Low as a lawn fit.</td>
+              <td>Best water-first exception. It beats weaker houses only if swimming matters more than the stated lawn priority.</td>
+            </tr>
+
+            <tr data-lawn="1" data-water="0">
+              <td><span class="rank">5</span><span class="property-name"><a href="https://www.vrbo.com/5378252?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">Earl’s Place</a></span><span class="mini">Individual Vrbo listing · one review</span></td>
+              <td>Geneva, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Geneva%2C%20OH&amp;travelmode=driving">54 min · 43.5 mi</a> to Geneva city.</td>
+              <td><span class="chip good">Available</span> Exact dates/4 guests accepted; checked Jul 29.</td>
+              <td><strong>$754 all-in</strong> for 2 nights; all fees included.</td>
+              <td><strong>3 BR:</strong> 1 king; 2 twins configured as a split king; 1 full. Adults get king; each child gets a twin in the second room. Sofa bed not needed.</td>
+              <td><span class="chip warn">Low-medium</span> Backyard firepit, garden and outdoor seating are verified, but the view is described as woodland and no broad open lawn is shown/described.</td>
+              <td>None verified.</td>
+              <td>None verified.</td>
+              <td>Deck table for 6, porch and firepit chairs.</td>
+              <td>Expandable indoor table seats 8; breakfast bar seats 2. Excellent.</td>
+              <td>Board games, deck sitting and possibly catch if the yard proves open enough. Do not assume soccer space.</td>
+              <td>No adjacent amenity is counted.</td>
+              <td>Check-in 3 p.m.; checkout 11 a.m.; renter 25+; no events, pets, smoking or outside guests; no refund.</td>
+              <td>No water; no table games; lawn/field not demonstrated; only one guest review.</td>
+              <td><span class="chip warn">Medium</span> Beds/price strong, lawn weak.</td>
+              <td>Excellent sleep/dining value, held down solely by insufficient proof of the near-mandatory open lawn.</td>
+            </tr>
+
+            <tr data-lawn="1" data-water="0">
+              <td><span class="rank">6</span><span class="property-name"><a href="https://www.airbnb.com/rooms/49016343?check_in=2026-07-31&amp;check_out=2026-08-02&amp;adults=2&amp;children=2">Elegant Geneva Getaway</a></span><span class="mini">Serious child-suitability conflict</span></td>
+              <td>Geneva, Ohio</td>
+              <td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=44118&amp;destination=Geneva%2C%20OH&amp;travelmode=driving">54 min · 43.5 mi</a> to Geneva city.</td>
+              <td><span class="chip good">Available</span> Dates selected, 4 guests, Reserve enabled; checked Jul 29.</td>
+              <td><strong>$879 all-in</strong> for 2 nights under Airbnb one-price display.</td>
+              <td><strong>3 BR:</strong> 1 queen in each. Separate conventional beds/rooms for everyone.</td>
+              <td><span class="chip bad">Low</span> Private fully fenced yard, deck and firepit are verified; gallery captions do not establish grass, open width or grade.</td>
+              <td>None verified.</td>
+              <td>None verified.</td>
+              <td>Deck/patio, firepit and alfresco seating.</td>
+              <td>Large indoor table shown seating 8. Excellent.</td>
+              <td>Deck sitting and games. Lawn sports should not be assumed.</td>
+              <td>No adjacent amenity is counted.</td>
+              <td>Check-in 3 p.m.; checkout 10 a.m.; partial refund language before check-in, exact amount not surfaced. <strong>Airbnb safety section says “Not suitable for children and infants,”</strong> despite a June 2026 family review. This must be resolved before considering.</td>
+              <td>Child-suitability conflict; lawn unproved; no water/table games.</td>
+              <td><span class="chip bad">Low-medium</span> Good house evidence, poor fit certainty.</td>
+              <td>Only a contingency: appealing beds/dining and fenced outdoor space cannot overcome the child warning and missing lawn proof.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="leaders">
+      <p class="eyebrow">02 · Close reading</p>
+      <h2>The three strongest properties</h2>
+      <p class="subhead">These are the only options that combine exact-date availability, fully usable conventional bed plans, Ohio/radius compliance, and at least medium evidence for a private yard.</p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="number">01</div>
+          <h3><a href="https://www.airbnb.com/rooms/937526363227729452?check_in=2026-07-31&amp;check_out=2026-08-02&amp;adults=2&amp;children=2">Lake Rd 4BR</a></h3>
+          <div class="chips">
+            <span class="chip good">$854 all-in</span>
+            <span class="chip good">4 real bedrooms</span>
+            <span class="chip warn">Lawn inferred</span>
+          </div>
+          <dl class="facts">
+            <dt>Sleep plan</dt><dd>Adults: king. Boy: twin. Girl: twin. Queen room remains spare.</dd>
+            <dt>Yard case</dt><dd>A current July 2026 guest says it is “big”; firepit/alfresco setup corroborates active outdoor use.</dd>
+            <dt>Saturday</dt><dd>Catch, football, soccer if flatness is confirmed; sitting and manual games on site.</dd>
+            <dt>Weak point</dt><dd>No on-parcel swimming. Shared beach route/distance is too vague to count.</dd>
+          </dl>
+          <p><strong>Why it wins:</strong> it solves sleeping without compromise and leaves $346 under budget. Its lawn evidence is more current and direct than the photo-only claims elsewhere. The crucial remaining question is not whether a yard exists, but whether enough of that yard is level and unobstructed for the games you have in mind.</p>
+        </article>
+
+        <article class="card">
+          <div class="number">02</div>
+          <h3><a href="https://www.vrbo.com/3545387ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">Wine Hop-Inn</a></h3>
+          <div class="chips">
+            <span class="chip good">$1,176 all-in</span>
+            <span class="chip good">Backyard horseshoes</span>
+            <span class="chip warn">Request-to-book</span>
+          </div>
+          <dl class="facts">
+            <dt>Sleep plan</dt><dd>Adults: king. Children: one queen each. All three bedrooms remain genuinely useful.</dd>
+            <dt>Yard case</dt><dd>Host explicitly promotes backyard, horseshoes, seating and play area; that is stronger functional evidence than decorative grass.</dd>
+            <dt>Saturday</dt><dd>Best ready-made plan: horseshoes, catch, outdoor sitting and listing-supplied games.</dd>
+            <dt>Weak point</dt><dd>No water amenity; no refund; host must accept the request.</dd>
+          </dl>
+          <p><strong>Why it is the safest backyard bet:</strong> the listing ties the yard to a real manual game instead of merely calling the lot “spacious.” It also has a long, current review record. If the host confirms the playable area is open/level, this may be the most defensible Saturday choice despite the higher price.</p>
+        </article>
+
+        <article class="card">
+          <div class="number">03</div>
+          <h3><a href="https://www.vrbo.com/20277021ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">GOTL &amp; SPIRE Escape</a></h3>
+          <div class="chips">
+            <span class="chip good">$721 all-in</span>
+            <span class="chip good">3 queens</span>
+            <span class="chip warn">No Vrbo reviews</span>
+          </div>
+          <dl class="facts">
+            <dt>Sleep plan</dt><dd>One queen in each bedroom—simple and fully conventional.</dd>
+            <dt>Yard case</dt><dd>Private maintained lawn/picnic/firepit imagery; adequate for catch is a medium-confidence visual inference.</dd>
+            <dt>Saturday</dt><dd>Yard games, board games and sheltered garage sitting; trail is excluded because it is off property.</dd>
+            <dt>Weak point</dt><dd>New listing, one bathroom, ambiguous minimum-age rule, no water.</dd>
+          </dl>
+          <p><strong>Why it is the value backup:</strong> it costs $455 less than Wine Hop-Inn while retaining three separate bedrooms. That savings compensates for thinner evidence, but it does not make the yard factually larger than the photographs prove.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="activities">
+      <p class="eyebrow">03 · Before check-in &amp; after check-out</p>
+      <h2>Friday and Sunday activities</h2>
+      <p class="subhead">Drive estimates use Geneva or Ashtabula city centers as proxies because the rentals conceal their addresses. All options remain in Ohio. Exact inventory was not reserved or held.</p>
+      <div class="table-wrap" style="max-height:none">
+        <table class="activity-table">
+          <thead>
+            <tr>
+              <th>When · activity</th>
+              <th>Official operating evidence</th>
+              <th>Drive from leaders</th>
+              <th>Cost</th>
+              <th>Ages · restrictions · equipment</th>
+              <th>Reservation / realistic availability</th>
+              <th>Assessment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Friday Jul 31</strong><br><a href="https://www.thelodgeatgeneva.com/tour/lake-erie-canopy-tours/">Lake Erie Canopy Tours — Kids Landlubber’s Course</a></td>
+              <td>Operator says “Now Open,” activities open daily; office 8 a.m.–8 p.m. The one-hour youth course is listed available daily except Tue–Wed pricing language; Friday qualifies.</td>
+              <td>From Geneva proxy: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Geneva%2C%20OH&amp;destination=Lake%20Erie%20Canopy%20Tours%2C%204888%20N%20Broadway%2C%20Geneva-on-the-Lake%2C%20OH&amp;travelmode=driving">8 min · 4.0 mi</a>. From Ashtabula: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ashtabula%2C%20OH&amp;destination=Lake%20Erie%20Canopy%20Tours%2C%204888%20N%20Broadway%2C%20Geneva-on-the-Lake%2C%20OH&amp;travelmode=driving">18 min · 10.4 mi</a>.</td>
+              <td>$29 + tax per child Friday; about $58 + tax for both children. Parent monitors; adults need not buy a course ticket unless participating.</td>
+              <td>Designed for ages 4–10, so both children qualify (10 is included). Self-guided with staff help; safety system supplied. Waiver required. Closed-toe shoes and comfortable clothing are prudent; operator supplies course safety equipment.</td>
+              <td>Reservations recommended; walk-ins only if capacity remains. The public page does not expose Jul 31 time-slot inventory without entering the booking flow, so <strong>slot availability is not fully verified</strong>.</td>
+              <td>Best age-matched Friday option, particularly before a 3–4 p.m. check-in. Weather/high winds/lightning can close aerial activities.</td>
+            </tr>
+            <tr>
+              <td><strong>Friday Jul 31 or Sunday Aug 2</strong><br><a href="https://lakecountyfair.org/fair-info/">171st Lake County Fair</a></td>
+              <td>Official 2026 fair runs Jul 28–Aug 2. Gates open 8 a.m. daily; midway opens noon. Midway closes 11 p.m. Friday and 10 p.m. Sunday; exhibit buildings close 10 p.m. Friday and 9 p.m. Sunday.</td>
+              <td>From Geneva: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Geneva%2C%20OH&amp;destination=Lake%20County%20Fairgrounds%2C%201301%20Mentor%20Ave%2C%20Painesville%2C%20OH&amp;travelmode=driving">28 min · 23.5 mi</a>. From Ashtabula: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ashtabula%2C%20OH&amp;destination=Lake%20County%20Fairgrounds%2C%201301%20Mentor%20Ave%2C%20Painesville%2C%20OH&amp;travelmode=driving">40 min · 33.1 mi</a>.</td>
+              <td>$12 each for age 3+ = <strong>$48 family admission</strong>. Includes exhibits, rides, free midway shows and some grandstand shows; pony rides/special attractions extra.</td>
+              <td>Both children pay general admission. Individual rides/special attractions may impose their own height/supervision rules; the official fair page does not publish a consolidated ride chart. Ordinary fair clothing; money for extras.</td>
+              <td>Ground admission is sold online and processed at the gate; no timed reservation is stated. The fair and hours are confirmed, but individual special-attraction capacity is not.</td>
+              <td>Best event actually occurring on the exact weekend. Friday works before/after check-in; Sunday works after checkout. From Ashtabula it stays inside the requested 45-minute ceiling.</td>
+            </tr>
+            <tr>
+              <td><strong>Sunday Aug 2 only</strong><br><a href="https://www.medievalfaire.com/faqpress/">Great Lakes Medieval Faire</a></td>
+              <td>Official 2026 season is weekends Jul 11–Aug 23. Gates 11 a.m.–7 p.m.; opening 10:45 a.m.; finale 6:15 p.m.; rain or shine. Aug 2 is a Sunday in the published season.</td>
+              <td>From Geneva: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Geneva%2C%20OH&amp;destination=Great%20Lakes%20Medieval%20Faire%2C%203037%20State%20Route%20534%2C%20Rock%20Creek%2C%20OH&amp;travelmode=driving">14 min · 10.1 mi</a>. From Ashtabula: <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ashtabula%2C%20OH&amp;destination=Great%20Lakes%20Medieval%20Faire%2C%203037%20State%20Route%20534%2C%20Rock%20Creek%2C%20OH&amp;travelmode=driving">27 min · 19.8 mi</a>.</td>
+              <td>Adults $25 each; children 5–12 $5 each; $5 parking. <strong>$65 family total</strong> before food/games.</td>
+              <td>No minimum age stated. Twelve stages, interactive entertainment, games of skill and wooded walking. Wear walking shoes and weather-appropriate clothing. Coolers must stay in the car.</td>
+              <td>Gate tickets are published; no reservation requirement is stated. Admission prices are marked subject to change.</td>
+              <td>Best Sunday-only outing: close to all three leaders, fully date-confirmed, and suitable for both ages without uncertain ride-height rules.</td>
+            </tr>
+            <tr>
+              <td><strong>Friday Jul 31</strong><br><a href="https://www.thelodgeatgeneva.com/tour/lake-erie-canopy-tours/">Double Zip / half zip alternatives</a></td>
+              <td>Operator is open daily with 8 a.m.–8 p.m. office hours. Friday rate: double zip $49; half zip $79; full zip $109, all + tax.</td>
+              <td>Same Lake Erie Canopy routes: 8 min/4.0 mi from Geneva proxy; 18 min/10.4 mi from Ashtabula proxy.</td>
+              <td>For four, double zip would be $196 + tax. Only participants pay.</td>
+              <td>Each child must weigh at least 70 lb and reach 5 ft; under 16 must zip with an adult. Harness/helmet/training supplied. Closed-toe shoes; no skirts/dresses or dangling items.</td>
+              <td>Reservations recommended; walk-ins capacity-dependent. Exact Jul 31 departure inventory not fully verified.</td>
+              <td>Use only if both children meet the weight/reach tests. The kids course above is the safer age-fit.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout red">
+        <strong>Not promoted as a firm itinerary:</strong> Adventure Zone’s current official page lists current attraction prices and says it is open May–September, but its hours link still points to a 2024 calendar. Without verified 2026 daily hours, it is a promising 8–20 minute option—not a schedule-ready recommendation.
+      </div>
+    </section>
+
+    <section id="saturday">
+      <p class="eyebrow">04 · No driving</p>
+      <h2>Best Saturday choices on foot</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Best lawn-first plan · Lake Rd</h3>
+          <ol>
+            <li>Use the private yard for catch, football or soccer <strong>only after confirming flat/open area</strong>.</li>
+            <li>Use the alfresco seating and listing-supplied manual games.</li>
+            <li>Treat shared beach access as unavailable for Saturday planning: route, distance, boundary and destination supplies are not disclosed.</li>
+          </ol>
+          <p class="mini">Confidence: medium-high on a large yard; medium on sports usability.</p>
+        </article>
+        <article class="card">
+          <h3>Best documented recreation · Wine Hop-Inn</h3>
+          <ol>
+            <li>Horseshoes in the private backyard.</li>
+            <li>Catch or football on the same property, subject to confirming open/level space.</li>
+            <li>Back-porch sitting and the on-site non-electronic games advertised by the host.</li>
+          </ol>
+          <p class="mini">No boundary crossing is needed for the recommended plan. The firepit is not counted as an activity.</p>
+        </article>
+        <article class="card">
+          <h3>Best water-first exception · Beach condo</h3>
+          <ol>
+            <li>Shared indoor heated pool, listed 8 a.m.–8 p.m. year-round.</li>
+            <li>Private complex beach and patio; no lifeguard and strong-undertow warning.</li>
+            <li>Beach chairs are reported at the beach; towels at the destination are not verified.</li>
+          </ol>
+          <p class="mini">This appears to remain within the condo property, so no off-property boundary crossing is involved—but there is no lawn.</p>
+        </article>
+      </div>
+      <div class="callout">
+        <strong>GOTL &amp; SPIRE note:</strong> the Western Reserve Greenway is 0.3 mile away but leaves the property. Bikes, water and other gear would have to cross the boundary; no equipment is supplied at the trailhead. It is therefore excluded from the Saturday plan even though it is walkable.
+      </div>
+    </section>
+
+    <section id="recommendation">
+      <p class="eyebrow">05 · Bottom line</p>
+      <h2>Recommendation and backups</h2>
+      <div class="recommendation">
+        <article class="hero-choice">
+          <p class="eyebrow" style="color:#bfe4de">Recommended first choice</p>
+          <h3><a href="https://www.airbnb.com/rooms/937526363227729452?check_in=2026-07-31&amp;check_out=2026-08-02&amp;adults=2&amp;children=2">Lake Rd 4BR</a></h3>
+          <p><strong>Principal reason:</strong> it is the only available candidate that gives the adults a king, gives each child a separate twin and room, and has fresh guest evidence of a “big yard”—all for $854 all-in.</p>
+          <p>The price leaves room for the fair or medieval faire, and its four-bedroom layout avoids every sofa/futon compromise. Before booking, the single decisive verification is a yes/no answer from the listing evidence or host: <em>Is the large yard sufficiently open and level for catch and casual soccer?</em></p>
+        </article>
+        <div class="backup-stack">
+          <article class="backup">
+            <h3>Backup 1 · <a href="https://www.vrbo.com/3545387ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">Wine Hop-Inn</a></h3>
+            <p>Choose it if documented backyard recreation matters more than price. Horseshoes are real functional evidence, and the three-bedroom bed plan is excellent. Act quickly because it is request-to-book and non-refundable.</p>
+          </article>
+          <article class="backup">
+            <h3>Backup 2 · <a href="https://www.vrbo.com/20277021ha?chkin=2026-07-31&amp;chkout=2026-08-02&amp;adults=4">GOTL &amp; SPIRE Escape</a></h3>
+            <p>Choose it for value: $721 all-in and three queens. Accept that it is a new listing with only medium lawn evidence and verify the conflicting minimum-renter-age language.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <p class="eyebrow">06 · One last pass</p>
+      <h2>Verify before booking</h2>
+      <ul class="checklist">
+        <li>Re-open the exact-date, four-guest link and confirm the same trip total; inventory is changing quickly.</li>
+        <li>Ask for a current wide-angle yard photo or explicit confirmation that the private lawn is open and level enough for catch and casual soccer.</li>
+        <li>Confirm no child is expected to use a sofa, futon or convertible bed; restate the intended bedroom assignment.</li>
+        <li>Re-read the cancellation screen immediately before payment; the top options are effectively non-refundable now.</li>
+        <li>For Wine Hop-Inn, confirm host acceptance before treating the stay as secured.</li>
+        <li>For Lake Rd, ask the walking distance and parcel boundary for shared beach access, plus whether any access item is needed and where beach chairs/towels are supplied.</li>
+        <li>For GOTL &amp; SPIRE, resolve the 18-versus-25 minimum renter-age conflict.</li>
+        <li>For the condo, confirm the shared pool’s 8 a.m.–8 p.m. hours for Aug 1 and whether any temporary maintenance closure is planned.</li>
+        <li>Check Lake Erie swim advisories and weather shortly before travel; no listing can guarantee waves, water quality or lightning conditions.</li>
+        <li>For Lake Erie Canopy Tours, verify an actual Jul 31 slot and both children’s age/weight/reach eligibility before paying.</li>
+      </ul>
+    </section>
+
+    <section id="limitations">
+      <p class="eyebrow">07 · Research boundaries</p>
+      <h2>Important limitations</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Last-minute scarcity:</strong> Vrbo showed only 4% of Geneva-area inventory remaining for these dates. A Conneaut search returned no available Vrbo homes. Availability can disappear between report and booking.</li>
+          <li><strong>Final live recheck:</strong> ranks 1–3 were re-opened on Jul 29, 2026 at approximately 5:46 p.m. ET. They still showed Jul 31–Aug 2 for four guests at $854, $1,176 and $721 respectively.</li>
+          <li><strong>Pricing:</strong> Airbnb’s “one price” and Vrbo’s “all fees included” totals were used. No booking was started or payment screen completed; optional extras, refundable security holds and later damage charges are not part of the quoted totals.</li>
+          <li><strong>Addresses and routes:</strong> booking platforms withhold exact addresses. Driving times therefore run from ZIP 44118 to the disclosed city, and activity times run from Geneva/Ashtabula city centers. They verify the two-hour geographic condition but are not doorstep ETAs.</li>
+          <li><strong>Lawn evidence:</strong> no source supplies dimensions. Every sports-use statement is labeled as an inference; “big yard,” horseshoes, exterior descriptions and listing photographs are useful evidence, not proof of grade or unobstructed width.</li>
+          <li><strong>Water:</strong> no lawn-first leader has a verified water amenity. The condo’s pool is shared, not private, despite one photo caption’s wording. Swimming remains weather, maintenance and safety-condition dependent.</li>
+          <li><strong>Activity inventory:</strong> fair/faire operating dates and hours are official and exact. Lake Erie Canopy Tours is officially open daily, but exact Jul 31 departure capacity was not visible without entering the booking flow; it is labeled not fully verified.</li>
+          <li><strong>Rejected attractive options:</strong> the exact-date Vrbo home with private pool/hot tub/firepit, the “Overlook Nook” hot-tub home, and an Airbnb luxury log cabin were checked and showed unavailable. A Pymatuning lodge was excluded because it is in Pennsylvania.</li>
+          <li><strong>No transaction or outreach:</strong> no host was contacted, no form submitted, no reservation held and nothing purchased.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sources">
+      <p class="eyebrow">Evidence map</p>
+      <h2>Primary sources used</h2>
+      <p class="source-list">Property facts, beds, amenities, rules, cancellation and exact-date totals come from the linked individual Airbnb/Vrbo pages. Route evidence comes from the linked Google Maps directions. Activity schedules, prices and restrictions come from the <a href="https://www.thelodgeatgeneva.com/tour/lake-erie-canopy-tours/">official Lake Erie Canopy Tours page</a>, <a href="https://lakecountyfair.org/fair-info/">official Lake County Fair page</a>, and <a href="https://www.medievalfaire.com/faqpress/">official Great Lakes Medieval Faire FAQ</a>. This report deliberately does not use search-result snippets as final property evidence.</p>
+      <p class="print-note">Links are clickable in the HTML version: ohio-family-weekend-shortlist-2026-07-31.html</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Research-only report · Prepared July 29, 2026 · Exact trip: July 31–August 2, 2026 · Four guests · Ohio lodging only</div>
+  </footer>
+
+  <script>
+    (() => {
+      const rows = [...document.querySelectorAll("#propertyTable tbody tr")];
+      const controls = {
+        all: document.getElementById("showAll"),
+        lawn: document.getElementById("lawnFirst"),
+        water: document.getElementById("waterOnly")
+      };
+      function apply(mode) {
+        rows.forEach(row => {
+          const visible =
+            mode === "all" ||
+            (mode === "lawn" && Number(row.dataset.lawn) >= 2) ||
+            (mode === "water" && row.dataset.water === "1");
+          row.dataset.hidden = visible ? "false" : "true";
+        });
+        Object.entries(controls).forEach(([key, button]) => {
+          button.classList.toggle("active", key === mode);
+          button.setAttribute("aria-pressed", key === mode ? "true" : "false");
+        });
+      }
+      controls.all.addEventListener("click", () => apply("all"));
+      controls.lawn.addEventListener("click", () => apply("lawn"));
+      controls.water.addEventListener("click", () => apply("water"));
+    })();
+  </script>
+</body>
+</html>
